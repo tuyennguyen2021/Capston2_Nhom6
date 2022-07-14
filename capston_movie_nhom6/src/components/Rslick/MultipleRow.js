@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
+import Films from "../Film/Films";
 import styleSlick from "./MultipleRow.module.css";
+import FilmsHover from "../Film/FilmsHover";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -28,18 +30,8 @@ export default class MultipleRows extends Component {
     return this.props.arrFilm.map((item, index) => {
       return (
         <div className={styleSlick["width-item"]} key={index}>
-          <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-            <img
-              className="lg:h-48 md:h-36 w-full object-cover object-center"
-              src={item.hinhAnh}
-              alt="blog"
-            />
-            <div className="p-6">
-              <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
-                {item.tenPhim}
-              </h1>
-            </div>
-          </div>
+          {/* <Films phim={item} /> */}
+          <FilmsHover phim={item} />
         </div>
       );
     });
@@ -57,20 +49,12 @@ export default class MultipleRows extends Component {
       variableWidth: true,
       nextArrow: <SampleNextArrow />,
       preArrow: <SamplePrevArrow />,
+      autoplay: false,
+      autoplaySpeed: 2000,
     };
     return (
       <div>
         <Slider {...settings}>
-          {this.renderFilm()}
-          {this.renderFilm()}
-          {this.renderFilm()}
-          {this.renderFilm()}
-          {this.renderFilm()}
-          {this.renderFilm()}
-          {this.renderFilm()}
-          {this.renderFilm()}
-          {this.renderFilm()}
-          {this.renderFilm()}
           {this.renderFilm()}
           {/* <div>
             <h3>1</h3>

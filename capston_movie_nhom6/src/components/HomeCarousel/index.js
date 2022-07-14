@@ -4,13 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { getCarouselAction } from "../../redux/actions/CarouselActions";
 
 const contentStyle = {
-  height: "600px",
+  height: "800px",
   color: "#fff",
-  lineHeight: "160px",
+  // lineHeight: "160px",
   textAlign: "center",
   background: "#364d79",
   backgroundPosition: "center",
-  backgroundSize: "100%",
+  backgroundSize: "100% 100%",
   backgroundRepeat: "no-repeat",
 };
 export default function HomeCarousel(props) {
@@ -29,7 +29,11 @@ export default function HomeCarousel(props) {
           <div
             style={{ ...contentStyle, backgroundImage: `url(${item.hinhAnh})` }}
           >
-            <img className="opacity-0" src={item.hinhAnh} alt={item.hinhAnh} />
+            <img
+              className="w-full opacity-0"
+              src={item.hinhAnh}
+              alt={item.hinhAnh}
+            />
           </div>
         </div>
       );
