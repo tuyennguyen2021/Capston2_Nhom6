@@ -1,6 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import _ from "lodash";
 
 export default function Footer() {
+  const { heThongRapChieu } = useSelector((state) => state.QuanLyRapReducer);
+  const arrHeThongRapChieu = _.map(heThongRapChieu, (heThongRap) =>
+    _.pick(heThongRap, ["maHeThongRap", "tenHeThong", "logo"])
+  );
+
+  console.log("arrnew", arrHeThongRapChieu);
   return (
     <footer className="px-4 divide-y dark:bg-gray-800 dark:text-gray-100">
       <div className="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
@@ -28,44 +36,41 @@ export default function Footer() {
         <div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
           <div className="space-y-3">
             <h3 className="tracking-wide uppercase dark:text-gray-50">
-              Product
+              Đối Tác
             </h3>
-            <ul className="space-y-1">
-              <li>
-                <a rel="noopener noreferrer" href="#">
-                  Features
-                </a>
-              </li>
-              <li>
-                <a rel="noopener noreferrer" href="#">
-                  Integrations
-                </a>
-              </li>
-              <li>
-                <a rel="noopener noreferrer" href="#">
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a rel="noopener noreferrer" href="#">
-                  FAQ
-                </a>
-              </li>
-            </ul>
+            <div className="grid grid-cols-2 space-y-1">
+              {arrHeThongRapChieu.map((htr, index) => {
+                return (
+                  <div key={index}>
+                    <img src={htr.logo} className="w-12" />
+                  </div>
+                );
+              })}
+            </div>
           </div>
           <div className="space-y-3">
             <h3 className="tracking-wide uppercase dark:text-gray-50">
-              Company
+              Điều Khoản Sử Dụng
             </h3>
             <ul className="space-y-1">
               <li>
                 <a rel="noopener noreferrer" href="#">
-                  Privacy
+                  Điều Khoản Chung
                 </a>
               </li>
               <li>
                 <a rel="noopener noreferrer" href="#">
-                  Terms of Service
+                  Điều khoản giao dịch
+                </a>
+              </li>
+              <li>
+                <a rel="noopener noreferrer" href="#">
+                  Chính sách thanh toán
+                </a>
+              </li>
+              <li>
+                <a rel="noopener noreferrer" href="#">
+                  Chính sách bảo mật
                 </a>
               </li>
             </ul>
@@ -75,23 +80,28 @@ export default function Footer() {
             <ul className="space-y-1">
               <li>
                 <a rel="noopener noreferrer" href="#">
-                  Public API
+                  Về Chúng Tôi
                 </a>
               </li>
               <li>
                 <a rel="noopener noreferrer" href="#">
-                  Documentation
+                  Giới thiệu
                 </a>
               </li>
               <li>
                 <a rel="noopener noreferrer" href="#">
-                  Guides
+                  Tuyển Dụng
+                </a>
+              </li>
+              <li>
+                <a rel="noopener noreferrer" href="#">
+                  Liên hệ quảng cáo
                 </a>
               </li>
             </ul>
           </div>
           <div className="space-y-3">
-            <div className="uppercase dark:text-gray-50">Social media</div>
+            <div className="uppercase dark:text-gray-50">FOLLOW US ON</div>
             <div className="flex justify-start space-x-3">
               <a
                 rel="noopener noreferrer"
@@ -142,7 +152,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="py-6 text-sm text-center dark:text-gray-400">
-        © 1968 Company Co. All rights reserved.
+        © 2022 Company Co. All rights reserved.
       </div>
     </footer>
   );

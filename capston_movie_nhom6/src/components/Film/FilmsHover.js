@@ -1,11 +1,12 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import "./FilmsHover.css";
 
 export default function FilmsHover(props) {
   const { phim } = props;
   return (
     <section className="page-contain">
-      <a href="#" className="data-card">
+      <div className="data-card">
         <div
           style={{
             background: `url(${phim.hinhAnh})`,
@@ -21,26 +22,25 @@ export default function FilmsHover(props) {
             alt={phim.tenPhim}
           />
         </div>
-        <h4>Care Facilities</h4>
-        <p>Aenean lacinia bibendum nulla sed consectetur.</p>
-        <span className="link-text">
-          View Trailer
-          <svg
-            width={25}
-            height={16}
-            viewBox="0 0 25 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M17.8631 0.929124L24.2271 7.29308C24.6176 7.68361 24.6176 8.31677 24.2271 8.7073L17.8631 15.0713C17.4726 15.4618 16.8394 15.4618 16.4489 15.0713C16.0584 14.6807 16.0584 14.0476 16.4489 13.657L21.1058 9.00019H0.47998V7.00019H21.1058L16.4489 2.34334C16.0584 1.95281 16.0584 1.31965 16.4489 0.929124C16.8394 0.538599 17.4726 0.538599 17.8631 0.929124Z"
-              fill="#753BBD"
-            />
-          </svg>
-        </span>
-      </a>
+        <h4 className="text-center">{phim.tenPhim}</h4>
+        <p className="mt-[-1em] desmotA">
+          {phim.moTa.length > 50 ? (
+            <span>{phim.moTa.slice(0, 60)} ...</span>
+          ) : (
+            <span>{phim.moTa}</span>
+          )}
+        </p>
+        <div className="grid grid-cols-2 mt-[-4rem]">
+          <NavLink to={`/detail/${phim.maPhim}`}>
+            <button className="cardin bg-transparent py-2 px-4 border rounded">
+              Đặt Vé
+            </button>
+          </NavLink>
+          <button className="cardin bg-transparent py-2 px-4 border rounded">
+            Xem Trailer
+          </button>
+        </div>
+      </div>
     </section>
   );
 }

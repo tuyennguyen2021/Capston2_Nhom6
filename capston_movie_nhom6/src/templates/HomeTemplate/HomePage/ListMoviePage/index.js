@@ -3,12 +3,18 @@ import HomeMenu from "../HomePageMenu";
 import { useSelector, useDispatch } from "react-redux";
 import { getListMovieAction } from "../../../../redux/actions/ListMovieAction";
 import MultipleRow from "../../../../components/Rslick/MultipleRow";
+import { layDanhSachHeThongRapAction } from "../../../../redux/actions/QuanLyRapAction";
+import HomeCarousel from "../../../../components/HomeCarousel";
 
 export default function HomePage() {
   const { arrListMovie } = useSelector((state) => state.ListMovieReducer);
+  const { heThongRapChieu } = useSelector((state) => state.QuanLyRapReducer);
+  console.log("heThongRapChieu", heThongRapChieu);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getListMovieAction());
+
+    dispatch(layDanhSachHeThongRapAction());
   }, []);
 
   // const renderListMovie = () => {
@@ -20,14 +26,17 @@ export default function HomePage() {
   //   });
   // };
   return (
-    <div className="container mx-auto">
-      <section className="text-gray-600 body-font">
-        <div className="container px-5 py-24 mx-auto">
-          <MultipleRow arrFilm={arrListMovie} />
-        </div>
-      </section>
+    <>
+      <HomeCarousel />
+      <div className="container mx-auto">
+        <section className="text-gray-600 body-font">
+          <div className="container px-5 py-24 mx-auto max-w-[80vw]">
+            <MultipleRow arrFilm={arrListMovie} />
+          </div>
+        </section>
 
-      <HomeMenu />
-    </div>
+        <HomeMenu heThongRapChieu={heThongRapChieu} />
+      </div>
+    </>
   );
 }

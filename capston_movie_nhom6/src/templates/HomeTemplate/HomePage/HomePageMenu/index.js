@@ -1,49 +1,85 @@
-import React, { useState } from "react";
-import { Radio, Space, Tabs } from "antd";
+import React, { Fragment, useState } from "react";
+import { Tabs } from "antd";
+import { useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import moment from "moment";
 
 const { TabPane } = Tabs;
-export default function HomeMenu() {
-  const [tabPosition, setTabPosition] = useState("left");
-  const changeTabPosition = (e) => {
-    setTabPosition(e.target.value);
+export default function HomeMenu(props) {
+  let [tabPosition] = useState("left");
+  const { heThongRapChieu } = props;
+
+  console.log(props, "prop123");
+
+  const renderHeThongRap = () => {
+    return heThongRapChieu?.map((heThongRap, index) => {
+      return (
+        <TabPane
+          tab={<img src={heThongRap.logo} className="rounded-full w-14" />}
+          key={index}
+        >
+          <Tabs tabPosition={tabPosition}>
+            {heThongRap.lstCumRap?.map((cumRap, index) => {
+              return (
+                <TabPane
+                  tab={
+                    <div className="w-80 flex">
+                      <img
+                        src="https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png"
+                        className="w-14"
+                      />
+                      <div className="ml-3  text-left">
+                        {cumRap.tenCumRap}
+                        <p className="my-0">{cumRap.diaChi}</p>
+                      </div>
+                    </div>
+                  }
+                  key={index}
+                >
+                  {cumRap.danhSachPhim.map((phim, index) => {
+                    return (
+                      <Fragment key={index}>
+                        <div className="flex my-2">
+                          <img
+                            style={{ width: 100, height: 100 }}
+                            src={phim.hinhAnh}
+                            alt={phim.hinhAnh}
+                          />
+                          <div className="ml-3">
+                            <div className="text-[#A78BFA] text-lg">
+                              {phim.tenPhim}
+                            </div>
+                            <p className="my-2">{cumRap.diaChi}</p>
+                            <div className="grid grid-cols-6 gap-6">
+                              {phim.lstLichChieuTheoPhim
+                                ?.slice(0, 12)
+                                .map((lichChieu, index) => {
+                                  return (
+                                    <NavLink to="/" key={index}>
+                                      {moment(
+                                        lichChieu.ngayChieuGioChieu
+                                      ).format("hh:mm A")}
+                                    </NavLink>
+                                  );
+                                })}
+                            </div>
+                          </div>
+                        </div>
+                        <hr />
+                      </Fragment>
+                    );
+                  })}
+                </TabPane>
+              );
+            })}
+          </Tabs>
+        </TabPane>
+      );
+    });
   };
   return (
     <>
-      <Tabs tabPosition={tabPosition}>
-        <TabPane
-          tab={
-            <img
-              src="https://movienew.cybersoft.edu.vn/hinhanh/bhd-star-cineplex.png"
-              className="rounded-full w-14"
-            />
-          }
-          key="1"
-        >
-          Content of Tab 1
-        </TabPane>
-        <TabPane
-          tab={
-            <img
-              src="https://movienew.cybersoft.edu.vn/hinhanh/bhd-star-cineplex.png"
-              className="rounded-full w-14"
-            />
-          }
-          key="2"
-        >
-          Content of Tab 2
-        </TabPane>
-        <TabPane
-          tab={
-            <img
-              src="https://movienew.cybersoft.edu.vn/hinhanh/bhd-star-cineplex.png"
-              className="rounded-full w-14"
-            />
-          }
-          key="3"
-        >
-          Content of Tab 3
-        </TabPane>
-      </Tabs>
+      <Tabs tabPosition={tabPosition}>{renderHeThongRap()}</Tabs>
     </>
   );
 }
