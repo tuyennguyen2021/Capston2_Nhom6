@@ -1,11 +1,11 @@
 import Axios from "axios";
-import { API, TOKEN, TOKEN_CYBERSOFT } from "../utils/Settings/config";
+import { DOMAIN, TOKEN, TOKEN_CYBERSOFT } from "../utils/Settings/config";
 
 export class baseService {
   //put json về phía backend
   put = (url, model) => {
     return Axios({
-      url: `${API}/${url}`,
+      url: `${DOMAIN}/${url}`,
       method: "PUT",
       data: model,
       headers: {
@@ -17,7 +17,7 @@ export class baseService {
 
   post = (url, model) => {
     return Axios({
-      url: `${API}/${url}`,
+      url: `${DOMAIN}/${url}`,
       method: "POST",
       data: model,
       headers: {
@@ -29,7 +29,7 @@ export class baseService {
 
   get = (url) => {
     return Axios({
-      url: `${API}/${url}`,
+      url: `${DOMAIN}/${url}`,
       method: "GET",
       headers: {
         TokenCybersoft: TOKEN_CYBERSOFT,
@@ -40,7 +40,7 @@ export class baseService {
 
   delete = (url) => {
     return Axios({
-      url: `${API}/${url}`,
+      url: `${DOMAIN}/${url}`,
       method: "DELETE",
       headers: {
         TokenCybersoft: TOKEN_CYBERSOFT,

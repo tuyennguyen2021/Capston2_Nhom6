@@ -1,5 +1,6 @@
 import {
   GET_LIST_MOVIE,
+  SET_CHI_TIET_PHIM,
   SET_FILM_DANG_CHIEU,
   SET_FILM_SAP_CHIEU,
 } from "../constants";
@@ -25,6 +26,7 @@ const initialState = {
   dangChieu: true,
   sapChieu: true,
   arrFilmDefault: [],
+  filmDetail: {},
 };
 
 export const ListMovieReducer = (state = initialState, action) => {
@@ -46,6 +48,10 @@ export const ListMovieReducer = (state = initialState, action) => {
       state.arrListMovie = state.arrFilmDefault.filter(
         (film) => film.sapChieu === state.sapChieu
       );
+      return { ...state };
+    }
+    case SET_CHI_TIET_PHIM: {
+      state.filmDetail = action.filmDetail;
       return { ...state };
     }
     default:

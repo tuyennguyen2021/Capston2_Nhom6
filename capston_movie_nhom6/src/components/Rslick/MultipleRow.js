@@ -55,7 +55,7 @@ const MultipleRows = (props) => {
     variableWidth: true,
     nextArrow: <SampleNextArrow />,
     preArrow: <SamplePrevArrow />,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 2000,
   };
 

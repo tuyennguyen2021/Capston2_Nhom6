@@ -8,10 +8,11 @@ import "popper.js/dist/umd/popper.min.js";
 import { Provider } from "react-redux";
 import { store } from "./redux/types/configStore";
 import "antd/dist/antd.css";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+/// da ngon ngu
+import "./i18n";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

@@ -6,6 +6,13 @@ import MultipleRow from "../../../../components/Rslick/MultipleRow";
 import { layDanhSachHeThongRapAction } from "../../../../redux/actions/QuanLyRapAction";
 import HomeCarousel from "../../../../components/HomeCarousel";
 
+const contentStyle = {
+  backgroundPosition: "top",
+  backgroundsize: "cover",
+  backgroundAttachment: "fixed",
+  backgroundRepeat: "no-repeat",
+};
+
 export default function HomePage() {
   const { arrListMovie } = useSelector((state) => state.ListMovieReducer);
   const { heThongRapChieu } = useSelector((state) => state.QuanLyRapReducer);
@@ -26,7 +33,13 @@ export default function HomePage() {
   //   });
   // };
   return (
-    <>
+    <div
+      style={{
+        ...contentStyle,
+        backgroundImage:
+          "url(https://www.bhdstar.vn/wp-content/themes/bhd/assets/images/movie-details-bg.jpg)",
+      }}
+    >
       <HomeCarousel />
       <div className="container mx-auto">
         <section className="text-gray-600 body-font">
@@ -37,6 +50,6 @@ export default function HomePage() {
 
         <HomeMenu heThongRapChieu={heThongRapChieu} />
       </div>
-    </>
+    </div>
   );
 }

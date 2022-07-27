@@ -1,7 +1,50 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
+import { Select } from "antd";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { Dropdown, Menu, Space } from "antd";
+import _ from "lodash";
+import { TOKEN, USER_LOGIN } from "../../utils/Settings/config";
+const { Option } = Select;
 
 export default function Header() {
+  const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
+
+  const { t, i18n } = useTranslation();
+
+  const handleChange = (value) => {
+    i18n.changeLanguage(`${value}`);
+    console.log(`selected ${value}`);
+  };
+
+  console.log(userLogin, "taokhoan");
+  const menu = (
+    <Menu
+      items={[
+        {
+          label: <NavLink to="profile">Thông tin tài khoản</NavLink>,
+          key: "0",
+        },
+        {
+          label: (
+            <NavLink
+              to="/"
+              onClick={() => {
+                localStorage.removeItem(USER_LOGIN);
+                localStorage.removeItem(TOKEN);
+                window.location.reload();
+              }}
+            >
+              Đăng Xuất
+            </NavLink>
+          ),
+          key: "1",
+        },
+      ]}
+    />
+  );
+
   return (
     <header className="p-4 dark:bg-gray-800 dark:text-gray-100">
       <div className="container flex justify-between h-16 mx-auto">
@@ -32,7 +75,7 @@ export default function Header() {
                   : "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent"
               }
             >
-              Trang Chủ
+              {t("Trang Chủ")}
             </NavLink>
           </li>
           <li className="flex">
@@ -45,7 +88,7 @@ export default function Header() {
                   : "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent"
               }
             >
-              Tin Tức
+              {t("Tin Tức")}
             </NavLink>
           </li>
           <li className="flex">
@@ -58,15 +101,41 @@ export default function Header() {
                   : "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent"
               }
             >
-              Liên Hệ
+              {t("Liên Hệ")}
             </NavLink>
           </li>
         </ul>
         <div className="items-center flex-shrink-0 hidden lg:flex">
-          <button className="self-center px-8 py-3 rounded">Đăng Ký</button>
-          <button className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900">
-            Đăng Nhập
-          </button>
+          {/* {renderLogin()} */}
+          {_.isEmpty(userLogin) ? (
+            <Fragment>
+              <NavLink to="register">
+                <button className="self-center px-8 py-3 rounded">
+                  {t("Đăng Ký")}
+                </button>
+              </NavLink>
+              <NavLink className="mr-3" to="login">
+                <button className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900">
+                  {t("Đăng Nhập")}
+                </button>
+              </NavLink>
+            </Fragment>
+          ) : (
+            <Dropdown overlay={menu} trigger={["click"]}>
+              <a onClick={(e) => e.preventDefault()} className="mr-2">
+                <Space>Hello!{userLogin.taiKhoan}</Space>
+              </a>
+            </Dropdown>
+          )}
+
+          <Select
+            defaultValue="vi"
+            style={{ width: 70 }}
+            onChange={handleChange}
+          >
+            <Option value="en">EN</Option>
+            <Option value="vi">VN</Option>
+          </Select>
         </div>
         <button className="p-4 lg:hidden">
           <svg
