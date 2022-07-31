@@ -1,7 +1,8 @@
 # Capston2_Nhom6
 
 Thành viên tham gia dự án capston2 Movie: 
-Nguyễn Huỳnh Quang Tuyên.
+Nguyễn Huỳnh Quang Tuyên
+Deloy: https://capston2-nhom6-projectmovie.vercel.app/
 
 Nội dung công việc: 
 
