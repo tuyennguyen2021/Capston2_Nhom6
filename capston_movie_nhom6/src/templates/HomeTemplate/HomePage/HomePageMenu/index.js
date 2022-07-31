@@ -41,7 +41,7 @@ export default function HomeMenu(props) {
                       <Fragment key={index}>
                         <div className="flex my-2">
                           <img
-                            style={{ width: 100, height: 100 }}
+                            style={{ width: 68, height: 82 }}
                             src={phim.hinhAnh}
                             alt={phim.hinhAnh}
                           />

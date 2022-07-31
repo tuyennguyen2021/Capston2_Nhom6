@@ -102,7 +102,7 @@ export default function AddFilm() {
           <Switch onChange={handleChangeSwitch("hot")} />
         </Form.Item>
 
-        <Form.Item label="Số sao">
+        <Form.Item label="Số sao (IMDb)">
           <InputNumber
             onChange={handleChangeInputNumber("danhGia")}
             min={1}

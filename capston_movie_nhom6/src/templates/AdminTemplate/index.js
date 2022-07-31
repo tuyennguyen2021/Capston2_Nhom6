@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Navigate, NavLink, Outlet } from "react-router-dom";
 import { Dropdown, Space } from "antd";
 import { TOKEN, USER_LOGIN } from "../../utils/Settings/config";
+import { Img } from "../../assets/images/Images";
 const { Header, Content, Footer, Sider } = Layout;
 
 function getItem(label, key, icon, children) {
@@ -17,12 +18,6 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
-  getItem(
-    <a href="/">
-      <img src="https://cyberlearn.vn/wp-content/uploads/2020/03/cyberlearn-min-new-opt2.png" />
-    </a>
-  ),
-
   getItem("Quản lý phim", "sub1", <VideoCameraOutlined />, [
     getItem(<NavLink to="/admin/films">Danh Sách Phim</NavLink>, "3"),
     getItem(<NavLink to="/admin/films/addnew">Thêm Phim</NavLink>, "4"),
@@ -34,7 +29,6 @@ const items = [
 ];
 
 export default function AdminTemplate(props) {
-  const { Component, ...restProps } = props;
   const [collapsed, setCollapsed] = useState(false);
   const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
   useEffect(() => {
@@ -55,8 +49,12 @@ export default function AdminTemplate(props) {
     <Menu
       items={[
         {
-          label: <NavLink to="/profile">Thông tin tài khoản</NavLink>,
+          label: <NavLink to="/">Trang Chủ</NavLink>,
           key: "0",
+        },
+        {
+          label: <NavLink to="/profile">Thông tin tài khoản</NavLink>,
+          key: "1",
         },
         {
           label: (
@@ -71,7 +69,7 @@ export default function AdminTemplate(props) {
               Đăng Xuất
             </NavLink>
           ),
-          key: "1",
+          key: "2",
         },
       ]}
     />

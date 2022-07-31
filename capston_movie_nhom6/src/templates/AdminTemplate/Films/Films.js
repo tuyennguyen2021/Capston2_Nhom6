@@ -20,7 +20,6 @@ export default function Films() {
   console.log(arrFilmDefault, "arrFilmDefault123");
   const searchRef = useRef(null);
   const [value, setValue] = useState("");
-  const { Option } = AutoComplete;
   const dispatch = useDispatch();
 
   useEffect(() => {

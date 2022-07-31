@@ -38,9 +38,6 @@ export default function EditUser() {
   });
   return (
     <div>
-      <h2 className="text-center text-4xl mb-10 text-blue-500">
-        Chỉnh sửa người dùng
-      </h2>
       <Form
         name="basic"
         labelCol={{ span: 8 }}

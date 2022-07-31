@@ -83,9 +83,6 @@ export default function Users() {
   }
   return (
     <div>
-      <div className="flex justify-between">
-        <h3 className="text-4xl text-blue-400 mb-5">Quản lý người dùng</h3>
-      </div>
       <AutoComplete
         className="mb-5 w-25"
         placeholder="Nhập vào tài khoản người dùng cần tìm"

@@ -13,8 +13,17 @@ export const dangNhapAction = (thongTinDangNhap, navigate) => {
     try {
       const result = await quanLyNguoiDungService.dangNhap(thongTinDangNhap);
       if (result.data.statusCode === 200) {
-        console.log("result", result);
-        dispatch({
+        let timerInterval;
+        await Swal.fire({
+          title: "Đăng nhập thành công!!!",
+          html: "Chúc bạn ngày mới tốt lành",
+          timer: 3000,
+          timerProgressBar: true,
+          willClose: () => {
+            clearInterval(timerInterval);
+          },
+        });
+        await dispatch({
           type: DANG_NHAP,
           thongTinDangNhap: result.data.content,
         });
@@ -22,7 +31,12 @@ export const dangNhapAction = (thongTinDangNhap, navigate) => {
         navigate(-1, { replace: true });
       }
     } catch (errors) {
-      console.log(errors, "errors");
+      Swal.fire({
+        title: "Có lỗi xảy ra!!!",
+        text: errors.response.data.content,
+        icon: "error",
+        confirmButtonText: "đã hiểu",
+      });
     }
   };
 };

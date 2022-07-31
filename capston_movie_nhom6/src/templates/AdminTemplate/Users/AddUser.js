@@ -33,9 +33,6 @@ export default function AddUser() {
   });
   return (
     <div>
-      <h2 className="text-center text-4xl mb-10 text-blue-500">
-        Thêm mới người dùng
-      </h2>
       <Form
         name="basic"
         labelCol={{ span: 8 }}

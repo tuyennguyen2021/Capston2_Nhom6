@@ -19,18 +19,7 @@ export default function Detail(props) {
   useEffect(() => {
     dispatch(layThongTinChiTietPhim(id));
   }, []);
-  // const [state, setState] = useState([]);
-  // useEffect(() => {
-  //   (async () => {
-  //     const result = await quanLyRapService.layThongTinLichChieuPhim(id);
-  //     setState(result.data.content);
-  //   })();
-  // }, []);
-
-  // console.log("state", state);
-
-  // console.log(state?.hinhAnh);
-
+  console.log(state.dangChieu, "dangChieu");
   return (
     <div
       style={{
@@ -65,7 +54,7 @@ export default function Detail(props) {
                 </h1>
                 <p className="mt-4">
                   Tình Trạng:{" "}
-                  {(state.dangChieu = true ? "Đang Chiếu" : "Sắp Chiếu")}
+                  {state.dangChieu === true ? "Đang Chiếu" : "Sắp Chiếu"}
                 </p>
                 <p className="mt-4">{state.moTa}</p>
                 <p className="mt-4">
@@ -79,65 +68,67 @@ export default function Detail(props) {
           </div>
         </div>
         <div className="container mx-auto mt-10 bg-white rounded-xl py-10">
-          <Tabs tabPosition={tabPosition}>
-            {state.heThongRapChieu?.map((htr, index) => {
-              return (
-                <TabPane
-                  tab={
-                    <div className="flex items-center">
-                      <img src={htr.logo} className="rounded-full w-14 ml-4" />
-                      <div className="ml-4">{htr.tenHeThongRap}</div>
-                    </div>
-                  }
-                  key={index}
-                >
-                  {htr.cumRapChieu?.map((cumRap, index) => {
-                    return (
-                      <div className="mt-5" key={index}>
-                        <div className="flex flex-row">
-                          <img
-                            style={{ width: 60, height: 60 }}
-                            src="https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png"
-                            className="w-14"
-                          />
-                          <div className="ml-3">
-                            <p className="font-bold">{cumRap.tenCumRap}</p>
-                            <p>{cumRap.diaChi}</p>
+          {state.sapChieu === true ? (
+            <div className="text-center text-red-600 text-xl">
+              Phim chưa có lịch chiếu!!
+            </div>
+          ) : (
+            <Tabs tabPosition={tabPosition}>
+              {state.heThongRapChieu?.map((htr, index) => {
+                return (
+                  <TabPane
+                    tab={
+                      <div className="flex items-center">
+                        <img
+                          src={htr.logo}
+                          className="rounded-full w-14 ml-4"
+                        />
+                        <div className="ml-4">{htr.tenHeThongRap}</div>
+                      </div>
+                    }
+                    key={index}
+                  >
+                    {htr.cumRapChieu?.map((cumRap, index) => {
+                      return (
+                        <div className="mt-5" key={index}>
+                          <div className="flex flex-row">
+                            <img
+                              style={{ width: 60, height: 60 }}
+                              src="https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png"
+                              className="w-14"
+                            />
+                            <div className="ml-3">
+                              <p className="font-bold">{cumRap.tenCumRap}</p>
+                              <p>{cumRap.diaChi}</p>
+                            </div>
+                          </div>
+                          <div className="thong-tin-lich-chieu grid grid-cols-4 ">
+                            {cumRap.lichChieuPhim
+                              ?.slice(0, 18)
+                              .map((lichChieu, index) => {
+                                return (
+                                  <NavLink
+                                    to={`/checkout/${lichChieu.maLichChieu}`}
+                                    key={index}
+                                    className="mt-4"
+                                  >
+                                    <button className="font-bold rounded-sm border border-gray-200 p-2 text-green-700  text-xs bg-[#fafafa] hover:text-[#fb4226] mr-2">
+                                      {moment(
+                                        lichChieu.ngayChieuGioChieu
+                                      ).format("hh:mm A")}
+                                    </button>
+                                  </NavLink>
+                                );
+                              })}
                           </div>
                         </div>
-                        <div className="thong-tin-lich-chieu grid grid-cols-4 ">
-                          {cumRap.lichChieuPhim
-                            ?.slice(0, 18)
-                            .map((lichChieu, index) => {
-                              return (
-                                <NavLink
-                                  to={`/checkout/${lichChieu.maLichChieu}`}
-                                  key={index}
-                                  className="mt-4"
-                                >
-                                  <button className="font-bold rounded-sm border border-gray-200 p-2 text-green-700  text-xs bg-[#fafafa] hover:text-[#fb4226] mr-2">
-                                    {moment(lichChieu.ngayChieuGioChieu).format(
-                                      "hh:mm A"
-                                    )}
-                                  </button>
-                                </NavLink>
-                              );
-                            })}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </TabPane>
-              );
-            })}
-
-            {/* <TabPane tab="Tab 2" key="2">
-              Content of Tab 2
-            </TabPane>
-            <TabPane tab="Tab 3" key="3">
-              Content of Tab 3
-            </TabPane> */}
-          </Tabs>
+                      );
+                    })}
+                  </TabPane>
+                );
+              })}
+            </Tabs>
+          )}
         </div>
       </CustomCard>
     </div>

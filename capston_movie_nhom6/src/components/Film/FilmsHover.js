@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./FilmsHover.css";
 import Swal from "sweetalert2";
+import ReactPlayer from "react-player/youtube";
 
 export default function FilmsHover(props) {
   const { phim } = props;
@@ -9,16 +10,16 @@ export default function FilmsHover(props) {
     <section className="page-contain">
       <div className="data-card">
         <div
-          style={{
-            background: `url(${phim.hinhAnh})`,
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-          }}
-          className="rounded-lg"
+          // style={{
+          //   background: `url(${phim.hinhAnh})`,
+          //   backgroundPosition: "center",
+          //   backgroundSize: "cover",
+          //   backgroundRepeat: "no-repeat",
+          // }}
+          className="rounded-lg h-[350px]"
         >
           <img
-            className="h-[320px] w-full opacity-0 rounded-lg"
+            className="h-full w-full opacity-1 rounded-lg"
             src={phim.hinhAnh}
             alt={phim.tenPhim}
           />
@@ -42,12 +43,11 @@ export default function FilmsHover(props) {
             className="cardin bg-transparent py-2 px-4 border rounded"
             onClick={() => {
               Swal.fire({
-                html: `<iframe allowfullscreen=${true} width=${1000} height=${600} src=${
+                html: `<iframe allow="autoplay" allowfullscreen=${true} width=100% height=${600} src=${
                   phim.trailer
-                }  iframeborder=${0}></iframe> `,
-
+                } iframeborder=${0}></iframe>`,
                 width: "1000px",
-                height: "600px",
+                background: "transparent",
               });
             }}
           >
