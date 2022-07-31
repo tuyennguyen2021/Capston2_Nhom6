@@ -1,8 +1,10 @@
 import {
+  GET_DANH_SACH_PHIM_KEYWORD,
   GET_LIST_MOVIE,
   SET_CHI_TIET_PHIM,
   SET_FILM_DANG_CHIEU,
   SET_FILM_SAP_CHIEU,
+  SET_THONG_TIN_PHIM,
 } from "../constants";
 
 const initialState = {
@@ -27,6 +29,8 @@ const initialState = {
   sapChieu: true,
   arrFilmDefault: [],
   filmDetail: {},
+  arrFilmSearch: [],
+  thongTinPhim: {},
 };
 
 export const ListMovieReducer = (state = initialState, action) => {
@@ -34,6 +38,11 @@ export const ListMovieReducer = (state = initialState, action) => {
     case GET_LIST_MOVIE: {
       state.arrListMovie = action.arrListMovie;
       state.arrFilmDefault = state.arrListMovie;
+      return { ...state };
+    }
+    case GET_DANH_SACH_PHIM_KEYWORD: {
+      state.arrFilmSearch = action.arrFilmSearch;
+      state.arrFilmDefault = state.arrFilmSearch;
       return { ...state };
     }
     case SET_FILM_DANG_CHIEU: {
@@ -52,6 +61,10 @@ export const ListMovieReducer = (state = initialState, action) => {
     }
     case SET_CHI_TIET_PHIM: {
       state.filmDetail = action.filmDetail;
+      return { ...state };
+    }
+    case SET_THONG_TIN_PHIM: {
+      state.thongTinPhim = action.thongTinPhim;
       return { ...state };
     }
     default:
