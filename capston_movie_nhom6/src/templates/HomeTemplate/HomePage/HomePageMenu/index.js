@@ -84,8 +84,8 @@ export default function HomeMenu(props) {
     });
   };
   return (
-    <>
+    <div className="xl:block hidden">
       <Tabs tabPosition={tabPosition}>{renderHeThongRap()}</Tabs>
-    </>
+    </div>
   );
 }

@@ -4,13 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { getCarouselAction } from "../../redux/actions/CarouselActions";
 
 const contentStyle = {
-  height: "800px",
+  height: "100%",
   color: "#fff",
-  // lineHeight: "160px",
+  // lineHeight: "800px",
   textAlign: "center",
-  background: "#364d79",
-  backgroundPosition: "center",
-  backgroundSize: "100% 100%",
+  backgroundPosition: "fixed",
+  backgroundSize: "100%",
   backgroundRepeat: "no-repeat",
 };
 export default function HomeCarousel(props) {

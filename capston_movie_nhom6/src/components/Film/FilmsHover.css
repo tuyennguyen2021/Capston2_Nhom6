@@ -26,7 +26,7 @@
   .data-card h4 {
     color: #627084;
     text-transform: uppercase;
-    font-size: 1.125em;
+    font-size: 1em;
     font-weight: 700;
     line-height: 1;
     letter-spacing: 0.1em;
@@ -35,9 +35,9 @@
   }
   .data-card .cardin {
     opacity: 0;
-    color: #FFFFFF;
+    color: #FFFFFF !important;
     font-weight: 500;
-    line-height: 1.8;
+    line-height: 1.2;
     margin: 1rem 3px 0em;
     transform: translateY(-1em);
     transition: opacity 0.45s ease, transform 0.5s ease;
@@ -46,7 +46,7 @@
   .data-card .link-text {
     display: block;
     color: #A78BFA;
-    font-size: 1.125em;
+    font-size: 1em;
     font-weight: 600;
     line-height: 1.2;
     margin: auto auto -1rem;
@@ -69,6 +69,7 @@
   }
   .data-card:hover h4 {
     color: #FFFFFF;
+    opacity:0;
   }
   .data-card:hover .cardin {
     opacity: 1;

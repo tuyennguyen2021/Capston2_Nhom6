@@ -1,15 +1,19 @@
-import React, { Fragment } from "react";
-import { NavLink } from "react-router-dom";
-import { Select } from "antd";
+import React, { Fragment, useState } from "react";
+import { Img } from "../../assets/images/Images";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { Dropdown, Menu, Space } from "antd";
 import _ from "lodash";
 import { TOKEN, USER_LOGIN } from "../../utils/Settings/config";
-import { Img } from "../../assets/images/Images";
+import { NavLink } from "react-router-dom";
+import { Dropdown, Space, Menu, Select } from "antd";
+import { CloseOutlined, MenuOutlined } from "@ant-design/icons";
 const { Option } = Select;
 
 export default function Header() {
+  const [nav, setNav] = useState(false);
+  const handleNav = () => {
+    setNav(!nav);
+  };
   const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
 
   const { t, i18n } = useTranslation();
@@ -78,107 +82,137 @@ export default function Header() {
     );
 
   return (
-    <header className="p-4 dark:bg-gray-800 dark:text-gray-100">
-      <div className="container flex justify-between h-16 mx-auto">
-        <NavLink
-          rel="noopener noreferrer"
-          to="/"
-          aria-label="Back to homepage"
-          className="flex items-center p-2"
-        >
-          <img src={Img[0]} alt="123" width={80} />
-        </NavLink>
-        <ul className="items-stretch hidden space-x-3 lg:flex">
-          <li className="flex">
+    <div>
+      <nav className="flex items-center justify-between flex-wrap bg-black p-2">
+        <div className="flex items-center flex-shrink-0 text-white mr-6 cursor-pointer">
+          <img src={Img[0]} width="70" />
+        </div>
+        <div className="block lg:hidden">
+          <button
+            onClick={handleNav}
+            className="flex items-center px-3 py-2 text-xl text-white"
+          >
+            {nav ? <CloseOutlined /> : <MenuOutlined />}
+          </button>
+        </div>
+        <div className="w-full flex-grow hidden lg:flex lg:items-center lg:w-auto">
+          <div className="text-sm lg:flex-grow text-white">
             <NavLink
-              rel="noopener noreferrer"
               to="/"
-              className={({ isActive }) =>
-                isActive
-                  ? "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent transition duration-500 dark:text-violet-400 dark:border-violet-400"
-                  : "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent"
-              }
+              className="block mt-4 lg:inline-block lg:mt-0 text-white mr-4"
             >
               {t("Trang Chủ")}
             </NavLink>
-          </li>
-          <li className="flex">
             <NavLink
-              rel="noopener noreferrer"
-              to="/news"
-              className={({ isActive }) =>
-                isActive
-                  ? "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent transition duration-500 dark:text-violet-400 dark:border-violet-400"
-                  : "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent"
-              }
+              to="/"
+              className="block mt-4 lg:inline-block lg:mt-0 text-white mr-4"
             >
               {t("Tin Tức")}
             </NavLink>
-          </li>
-          <li className="flex">
             <NavLink
-              rel="noopener noreferrer"
-              to="/about"
-              className={({ isActive }) =>
-                isActive
-                  ? "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent transition duration-500 dark:text-violet-400 dark:border-violet-400"
-                  : "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent"
-              }
+              to="/"
+              className="block mt-4 lg:inline-block lg:mt-0 text-white mr-4"
             >
-              {t("Liên Hệ")}
+              Cụm Rạp
             </NavLink>
-          </li>
-        </ul>
-        <div className="items-center flex-shrink-0 hidden lg:flex">
-          {/* {renderLogin()} */}
+          </div>
           {_.isEmpty(userLogin) ? (
             <Fragment>
-              <NavLink to="register">
-                <button className="self-center px-8 py-3 rounded">
-                  {t("Đăng Ký")}
-                </button>
-              </NavLink>
-              <NavLink className="mr-3" to="login">
-                <button className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900">
-                  {t("Đăng Nhập")}
-                </button>
-              </NavLink>
+              <div>
+                <NavLink
+                  to="/register"
+                  className="block text-sm px-4 py-2 leading-none !text-gray-50 lg:mt-0"
+                >
+                  Đăng Ký
+                </NavLink>
+              </div>
+              <div>
+                <NavLink
+                  to="/login"
+                  className="inline-block text-sm px-4 py-2 leading-none border rounded !text-purple-500 border-purple-500 hover:border-transparent hover:!text-black hover:bg-purple-500 mt-4 lg:mt-0"
+                >
+                  Đăng Nhập
+                </NavLink>
+              </div>
             </Fragment>
           ) : (
             <Dropdown overlay={menu} trigger={["click"]}>
-              <a onClick={(e) => e.preventDefault()} className="mr-12">
-                <Space>Hello!{userLogin.taiKhoan}</Space>
+              <a onClick={(e) => e.preventDefault()} className="mr-6 ">
+                <Space className="text-white">Hello!{userLogin.taiKhoan}</Space>
               </a>
             </Dropdown>
           )}
 
           <Select
             defaultValue="vi"
-            style={{ width: 70 }}
+            style={{ width: 80 }}
             onChange={handleChange}
-            className="ml-10"
+            className="py-6"
+            bordered={false}
           >
-            <Option value="en">EN</Option>
-            <Option value="vi">VN</Option>
+            <Option value="en">
+              <img src={Img[3]} width="40" />
+            </Option>
+            <Option value="vi">
+              <img src={Img[2]} width="40" />
+            </Option>
           </Select>
         </div>
-        <button className="p-4 lg:hidden">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            className="w-6 h-6 dark:text-gray-100"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
-        </button>
-      </div>
-    </header>
+        <div
+          className={
+            nav
+              ? "w-full block flex-grow lg:hidden lg:flex lg:items-center lg:w-auto"
+              : "  w-full block flex-grow lg:hidden lg:flex lg:items-center lg:w-auto hidden "
+          }
+        >
+          <div className="text-sm lg:flex-grow text-white">
+            <NavLink
+              to="/"
+              className="block mt-4 lg:inline-block lg:mt-0 text-white mr-4"
+            >
+              Trang Chủ
+            </NavLink>
+            <NavLink
+              to="/"
+              className="block mt-4 lg:inline-block lg:mt-0 text-white mr-4"
+            >
+              Tin Tức
+            </NavLink>
+            <NavLink
+              to="/"
+              className="block my-4 lg:inline-block lg:mt-0 text-white"
+            >
+              Cụm Rạp
+            </NavLink>
+          </div>
+          {_.isEmpty(userLogin) ? (
+            <Fragment>
+              <div>
+                <a
+                  href="#"
+                  className="inline-block text-sm py-2 leading-none text-white  hover:text-white  lg:mt-0"
+                >
+                  {t("Đăng Ký")}
+                </a>
+              </div>
+              <div>
+                <a
+                  href="#"
+                  className="inline-block text-sm mt-4 px-4 py-2 leading-none border rounded text-purple-500 border-purple-500 hover:border-transparent hover:text-white hover:bg-purple-500 lg:mt-0"
+                >
+                  {t("Đăng Nhập")}
+                </a>
+              </div>
+            </Fragment>
+          ) : (
+            <Dropdown overlay={menu} trigger={["click"]}>
+              <a onClick={(e) => e.preventDefault()}>
+                <Space className="text-white">Hello!{userLogin.taiKhoan}</Space>
+              </a>
+            </Dropdown>
+          )}
+        </div>
+      </nav>
+    </div>
   );
 }

@@ -42,7 +42,7 @@ export default function Login() {
           to="/"
           className="py-4 w-full bg-transparent lg:bg-transparent flex justify-center lg:justify-start lg:px-12 absolute "
         >
-          <div className="cursor-pointer flex items-center">
+          <div className="cursor-pointer items-center hidden lg:block">
             <img src={Img[0]} width={100} />
           </div>
         </NavLink>

@@ -76,14 +76,14 @@ export default function Register() {
           to="/"
           className="py-4 w-full bg-transparent lg:bg-transparent flex justify-center lg:justify-start lg:px-12 absolute "
         >
-          <div className="cursor-pointer flex items-center">
+          <div className="cursor-pointer items-center hidden lg:block">
             <img src={Img[0]} width={100} />
           </div>
         </NavLink>
 
         <div className="min-h-screen sm:flex sm:flex-row mx-0 justify-center">
-          <div className="flex justify-center self-center  z-10">
-            <div className="p-10 bg-white mx-auto rounded-2xl w-100 ">
+          <div className="flex justify-center self-center z-10">
+            <div className="p-10 bg-white mx-auto rounded-2xl w-full">
               <div className="mb-2">
                 <h3 className="font-semibold text-2xl text-gray-800">
                   ĐĂNG KÝ{" "}

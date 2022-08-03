@@ -106,7 +106,7 @@ function Checkout(props) {
   return (
     <div className="container min-h-screen mt-5">
       <div className="grid grid-cols-12">
-        <div className="col-span-9">
+        <div className="col-span-12 xl:col-span-9">
           <div className="flex flex-col items-center mt-5">
             <div className="bg-green-400" style={{ width: "80%", height: 30 }}>
               <h1
@@ -146,7 +146,7 @@ function Checkout(props) {
             </div>
           </div>
         </div>
-        <div className="col-span-3">
+        <div className="col-span-12 xl:col-span-3 h-full">
           <h1 className="text-green-400 text-center text-2xl">{tienVePhim}đ</h1>
           <hr />
           <h3 className="text-xl">{thongTinPhim.tenPhim}</h3>

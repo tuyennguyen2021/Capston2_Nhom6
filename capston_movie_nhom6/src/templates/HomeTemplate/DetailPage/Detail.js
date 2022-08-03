@@ -67,7 +67,7 @@ export default function Detail(props) {
             </div>
           </div>
         </div>
-        <div className="container mx-auto mt-10 bg-white rounded-xl py-10">
+        <div className="container mx-auto w-full bg-white rounded-xl py-10 lg:w-4/5">
           {state.sapChieu === true ? (
             <div className="text-center text-red-600 text-xl">
               Phim chưa có lịch chiếu!!
@@ -83,7 +83,9 @@ export default function Detail(props) {
                           src={htr.logo}
                           className="rounded-full w-14 ml-4"
                         />
-                        <div className="ml-4">{htr.tenHeThongRap}</div>
+                        <div className="ml-4 hidden lg:block">
+                          {htr.tenHeThongRap}
+                        </div>
                       </div>
                     }
                     key={index}

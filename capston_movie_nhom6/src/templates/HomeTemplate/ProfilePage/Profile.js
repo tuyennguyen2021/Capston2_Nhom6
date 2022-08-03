@@ -114,7 +114,7 @@ function Modal({ closeModal }) {
   console.log(formik.initialValues, "values12");
 
   return (
-    <div className="modalBackground">
+    <div className="modalBackground w-full lg:w-2/4">
       <div className="modalContainer">
         <div className="titleCloseBtn">
           <button onClick={() => closeModal(false)}>X</button>
