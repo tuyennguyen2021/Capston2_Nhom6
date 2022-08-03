@@ -45,18 +45,45 @@ const MultipleRows = (props) => {
 
   const settings = {
     className: "center variable-width",
-    centerMode: true,
+    centerMode: false,
     infinite: true,
-    centerPadding: "60px",
-    slidesToShow: 3,
+    // centerPadding: "-1000px",
+    slidesToShow: 4,
     speed: 500,
     rows: 1,
     slidesPerRow: 2,
     variableWidth: true,
     nextArrow: <SampleNextArrow />,
     preArrow: <SamplePrevArrow />,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 2000,
+    responsive: [
+      {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   let activeClassDC = dangChieu === true ? "active_Film" : "none_active_Film";

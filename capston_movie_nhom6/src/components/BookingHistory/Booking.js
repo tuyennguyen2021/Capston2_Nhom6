@@ -21,7 +21,7 @@ export default function Booking(props) {
       const diaDiem = _.first(ticket.danhSachGhe);
       return (
         <div
-          className="flex justify-around w-1/2 border-b pb-10 mb-10 border-gray-200"
+          className="flex justify-around lg:w-1/3 md:w-1/2 w-full border-b pb-10 mb-10 border-gray-200"
           key={index}
         >
           <div className="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center  bg-indigo-100 text-indigo-500 flex-shrink-0">

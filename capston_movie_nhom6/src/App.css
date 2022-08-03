@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+a {
+  color: inherit !important;
+  text-decoration: none;
+}
+
+
 .ant-carousel .slick-dots {
   margin-left: 0 !important;
 }
@@ -17,3 +23,11 @@
   transform: translate(-80px, -50%) !important;
   left: 20px !important;
 }
+
+/* .slick-slide > div {
+  margin: 0 5px;
+}
+.slick-list {
+  margin: 0 -5px;
+} */
+
